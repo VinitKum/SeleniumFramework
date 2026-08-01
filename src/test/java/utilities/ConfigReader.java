@@ -24,4 +24,9 @@ public class ConfigReader {
     public String getUrl() {
         return prop.getProperty("url");
     }
+
+	public boolean isHeadless() {
+		
+		return Boolean.parseBoolean(prop.getProperty("headless"));
+	}
 }
