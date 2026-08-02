@@ -20,6 +20,10 @@ pipeline {
 
         always {
             junit 'test-output/junitreports/*.xml'
+            allure(
+            includeProperties: false,
+            jdk: '',
+            results: [[path: 'target/allure-results']]
         }
 
     }

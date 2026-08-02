@@ -4,79 +4,89 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
 import utilities.ConfigReader;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class BaseTest
-{
-	public WebDriver driver;
-	
-	public WebDriver getDriver()
-	{
-	    return driver;
-	}
-	
-	
-	
-//	public void setup() throws IOException
-//	{
-//		ConfigReader reader=new ConfigReader();
-//		driver =new FirefoxDriver();
-//		driver.manage().window().maximize();
-//		driver.get(reader.getUrl());
-//	
-//	}
-	
-	@BeforeMethod
-	public void setup() throws IOException {
-		
-		ConfigReader reader = new ConfigReader();
+public class BaseTest {
 
-		String browser = reader.getBrowser();
-		boolean headless = reader.isHeadless();
-		
-		if (browser.equalsIgnoreCase("chrome"))
-		{
-		    ChromeOptions options = new ChromeOptions();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-		    if (headless)
-		    {
-		        options.addArguments("--headless=new");
-		    }
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
 
-		    driver = new ChromeDriver(options);
-		}
-		else if(browser.equalsIgnoreCase("firefox"))
-		{
-		    driver = new FirefoxDriver();
-		}
-		else if ("edge".equalsIgnoreCase(browser))
-		{
-		    driver = new EdgeDriver();
-		}
-		else
-		{
-		    throw new RuntimeException("Invalid Browser: " + browser);
-		}
+    @BeforeMethod
+    public void setup() throws IOException {
 
-		driver.manage().window().maximize();
+        ConfigReader reader = new ConfigReader();
 
-		driver.get(reader.getUrl());
-	}
-	
-	@AfterMethod
-	public void tearDown() throws InterruptedException
-	{
-		//Thread.sleep(5000);
-		if (driver != null) 
-		{
-            driver.quit();
+        String browser = reader.getBrowser();
+        boolean headless = reader.isHeadless();
+
+        if (browser.equalsIgnoreCase("chrome")) {
+
+            ChromeOptions options = new ChromeOptions();
+
+            if (headless) {
+                options.addArguments("--headless=new");
+            }
+
+            driver.set(new ChromeDriver(options));
+
         }
-	}
+
+        else if (browser.equalsIgnoreCase("firefox")) {
+
+            FirefoxOptions options = new FirefoxOptions();
+
+            if (headless) {
+                options.addArguments("-headless");
+            }
+
+            driver.set(new FirefoxDriver(options));
+
+        }
+
+        else if (browser.equalsIgnoreCase("edge")) {
+
+            EdgeOptions options = new EdgeOptions();
+
+            if (headless) {
+                options.addArguments("--headless=new");
+            }
+
+            driver.set(new EdgeDriver(options));
+
+        }
+
+        else {
+
+            throw new RuntimeException("Invalid Browser : " + browser);
+
+        }
+
+        getDriver().manage().window().maximize();
+        getDriver().get(reader.getUrl());
+
+    }
+
+    @AfterMethod
+    public void tearDown() {
+
+        if (getDriver() != null) {
+
+            getDriver().quit();
+            driver.remove();
+
+        }
+
+    }
+
 }

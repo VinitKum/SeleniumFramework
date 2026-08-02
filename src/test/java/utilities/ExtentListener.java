@@ -8,43 +8,62 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import utilities.AllureUtil;
 
 import base.BaseTest;
 
 public class ExtentListener implements ITestListener {
 
     ExtentReports extent = ExtentManager.getReport();
-    ExtentTest test;
+
+    private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     @Override
     public void onTestStart(ITestResult result) {
-        test = extent.createTest(result.getName());
+
+        test.set(extent.createTest(result.getName()));
+
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.pass("Test Passed");
+
+        test.get().pass("Test Passed");
+
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        test.fail(result.getThrowable());
+    	 System.out.println("========= onTestFailure =========");
+        test.get().fail(result.getThrowable());
+
         BaseTest base = (BaseTest) result.getInstance();
 
-        String path = null;
-		try {
-			path = ScreenshotUtil.capture(base.getDriver(),
-			                       result.getName());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        // Attach Screenshot to Allure
+        AllureUtil.attachScreenshot(base.getDriver());
 
-        test.addScreenCaptureFromPath(path);
+        try {
+
+            String path = ScreenshotUtil.capture(base.getDriver(), result.getName());
+
+            test.get().addScreenCaptureFromPath(path);
+
+        }
+
+        catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
     }
 
     @Override
     public void onFinish(ITestContext context) {
+
         extent.flush();
+        test.remove();
+
     }
+
 }
