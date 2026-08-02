@@ -29,4 +29,9 @@ public class ConfigReader {
 		
 		return Boolean.parseBoolean(prop.getProperty("headless"));
 	}
+
+	public String getExecutionMode() {
+	    return prop.getProperty("execution");
+
+	}
 }

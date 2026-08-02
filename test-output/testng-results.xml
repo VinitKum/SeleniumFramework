@@ -2,45 +2,20 @@
 <testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-02T13:43:35 IST" name="OrangeHRM Suite" finished-at="2026-08-02T13:43:56 IST" duration-ms="20993">
+  <suite started-at="2026-08-02T19:49:15 IST" name="OrangeHRM Suite" finished-at="2026-08-02T19:49:29 IST" duration-ms="13872">
     <groups>
     </groups>
-    <test started-at="2026-08-02T13:43:35 IST" name="Login Test" finished-at="2026-08-02T13:43:56 IST" duration-ms="20993">
+    <test started-at="2026-08-02T19:49:15 IST" name="Login Test" finished-at="2026-08-02T19:49:29 IST" duration-ms="13872">
       <class name="tests.LoginTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.LoginTest@35f26e72]" started-at="2026-08-02T13:43:36 IST" name="setup" finished-at="2026-08-02T13:43:45 IST" duration-ms="9016" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.LoginTest@67304a40]" started-at="2026-08-02T19:49:16 IST" name="setup" finished-at="2026-08-02T19:49:23 IST" duration-ms="6909" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="loginCheck(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.LoginTest@35f26e72]" started-at="2026-08-02T13:43:46 IST" name="loginCheck" data-provider="loginData" finished-at="2026-08-02T13:43:48 IST" duration-ms="2561" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Admin]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[admin123]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[SUCCESS]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- loginCheck -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginTest@35f26e72]" started-at="2026-08-02T13:43:48 IST" name="tearDown" finished-at="2026-08-02T13:43:48 IST" duration-ms="279" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.LoginTest@35f26e72]" started-at="2026-08-02T13:43:48 IST" name="setup" finished-at="2026-08-02T13:43:53 IST" duration-ms="4561" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.LoginTest@67304a40]" started-at="2026-08-02T19:49:16 IST" name="setup" finished-at="2026-08-02T19:49:24 IST" duration-ms="7775" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="loginCheck(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.LoginTest@35f26e72]" started-at="2026-08-02T13:43:53 IST" name="loginCheck" data-provider="loginData" finished-at="2026-08-02T13:43:56 IST" duration-ms="2974" status="PASS">
+        <test-method signature="loginCheck(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.LoginTest@67304a40]" started-at="2026-08-02T19:49:23 IST" name="loginCheck" data-provider="loginData" finished-at="2026-08-02T19:49:26 IST" duration-ms="3233" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -61,7 +36,32 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginCheck -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginTest@35f26e72]" started-at="2026-08-02T13:43:56 IST" name="tearDown" finished-at="2026-08-02T13:43:56 IST" duration-ms="249" status="PASS">
+        <test-method signature="loginCheck(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.LoginTest@67304a40]" started-at="2026-08-02T19:49:24 IST" name="loginCheck" data-provider="loginData" finished-at="2026-08-02T19:49:26 IST" duration-ms="2461" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[SUCCESS]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginCheck -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginTest@67304a40]" started-at="2026-08-02T19:49:26 IST" name="tearDown" finished-at="2026-08-02T19:49:28 IST" duration-ms="2354" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginTest@67304a40]" started-at="2026-08-02T19:49:26 IST" name="tearDown" finished-at="2026-08-02T19:49:29 IST" duration-ms="2383" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
