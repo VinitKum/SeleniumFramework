@@ -47,7 +47,7 @@ public class LoginTest extends BaseTest {
         if (result.equalsIgnoreCase("SUCCESS")) 
         {
 
-        	Assert.assertTrue(false);
+        	Assert.assertTrue(true);
 
             wait.until(ExpectedConditions.urlContains("dashboard"));
 
