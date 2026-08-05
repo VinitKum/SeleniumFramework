@@ -34,4 +34,8 @@ public class ConfigReader {
 	    return prop.getProperty("execution");
 
 	}
+	public String getGridUrl() {
+	    return prop.getProperty("grid.url");
+	}
+	
 }

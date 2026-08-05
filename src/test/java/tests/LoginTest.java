@@ -66,7 +66,7 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @DataProvider(name = "loginData", parallel = true)
+    @DataProvider(name = "loginData", parallel = false)
     public Object[][] loginData() throws IOException {
 
         return ExcelUtility.getData();

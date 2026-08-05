@@ -14,6 +14,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import utilities.ConfigReader;
 
@@ -25,13 +27,22 @@ public class BaseTest {
         return driver.get();
     }
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setup() throws IOException, MalformedURLException {
+    public void setup(@Optional("") String browser)
+            throws IOException, MalformedURLException {
 
         ConfigReader reader = new ConfigReader();
 
-        String browser = reader.getBrowser();
-        String execution = reader.getExecutionMode();
+        // Browser from TestNG XML, otherwise config.properties
+        if (browser == null || browser.isBlank()) {
+            browser = System.getProperty("browser", reader.getBrowser());
+        }
+
+        // Execution always from config.properties (or JVM property)
+        String execution = System.getProperty("execution", reader.getExecutionMode());
+
+        String gridUrl = reader.getGridUrl();
         boolean headless = reader.isHeadless();
 
         // ===================== CHROME =====================
@@ -51,7 +62,7 @@ public class BaseTest {
             } else {
 
                 driver.set(new RemoteWebDriver(
-                        new URL("http://localhost:4444"),
+                        new URL(gridUrl),
                         options));
 
             }
@@ -75,7 +86,7 @@ public class BaseTest {
             } else {
 
                 driver.set(new RemoteWebDriver(
-                        new URL("http://localhost:4444"),
+                        new URL(gridUrl),
                         options));
 
             }
@@ -99,7 +110,7 @@ public class BaseTest {
             } else {
 
                 driver.set(new RemoteWebDriver(
-                        new URL("http://localhost:4444"),
+                        new URL(gridUrl),
                         options));
 
             }
@@ -114,14 +125,14 @@ public class BaseTest {
 
         getDriver().manage().window().maximize();
         getDriver().get(reader.getUrl());
-
     }
 
     @AfterMethod
     public void tearDown() throws InterruptedException {
 
         if (getDriver() != null) {
-        	Thread.sleep(2000);
+
+            Thread.sleep(2000);
             getDriver().quit();
             driver.remove();
 
