@@ -22,7 +22,7 @@ pipeline {
 
         always {
 
-            junit 'test-output/junitreports/*.xml'
+            
 
             allure(
                 includeProperties: false,
