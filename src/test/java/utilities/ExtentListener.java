@@ -20,6 +20,7 @@ public class ExtentListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
+        System.out.println("🔥 EXTENT: onTestStart -> " + result.getName());
 
         test.set(extent.createTest(result.getName()));
 
@@ -27,7 +28,7 @@ public class ExtentListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-
+        System.out.println("🔥 EXTENT: onTestSuccess -> " + result.getName());
         test.get().pass("Test Passed");
 
     }
@@ -60,7 +61,7 @@ public class ExtentListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-
+        System.out.println("🔥 EXTENT: onFinish -> FLUSHING REPORT");
         extent.flush();
         test.remove();
 

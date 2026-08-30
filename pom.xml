@@ -20,10 +20,22 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.28.0</version>
+            <version>4.47.0</version>
         </dependency>
+        <!-- Cucumber Java -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>7.18.1</version>
+</dependency>
+<!-- Cucumber TestNG integration -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-testng</artifactId>
+    <version>7.18.1</version>
+</dependency>
         <dependency>
-    <groupId	>com.aventstack</groupId>
+    <groupId>com.aventstack</groupId>
     <artifactId>extentreports</artifactId>
     <version>5.1.2</version>
 </dependency>

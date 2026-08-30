@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import base.BaseTest;
 import pages.LoginPage;
 import utilities.ExcelUtility;
@@ -20,7 +20,9 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import utilities.ExtentListener;
 
+@Listeners(ExtentListener.class)
 public class LoginTest extends BaseTest {
 
 	@Epic("OrangeHRM")
@@ -29,7 +31,6 @@ public class LoginTest extends BaseTest {
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify Login Functionality using multiple credentials")
 	@Test(dataProvider="loginData")
-
     public void loginCheck(String username, String password, String result) {
 		
 		Allure.getLifecycle().updateTestCase(testResult ->
@@ -54,8 +55,8 @@ public class LoginTest extends BaseTest {
             Assert.assertTrue(getDriver().getCurrentUrl().contains("dashboard"));
 
         }
-
-        else {
+        else
+        {
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']")));
@@ -74,3 +75,4 @@ public class LoginTest extends BaseTest {
     }
 
 }
+
