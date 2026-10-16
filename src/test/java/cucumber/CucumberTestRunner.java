@@ -10,8 +10,9 @@ import io.cucumber.testng.CucumberOptions;
                 "pretty",
                 "html:target/cucumber-report.html"
         },
-        monochrome = true
+        monochrome = true,
        // tags = "@smoke and @regression"
+        dryRun=false
 
 )
 public class CucumberTestRunner extends AbstractTestNGCucumberTests

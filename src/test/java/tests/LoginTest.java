@@ -1,8 +1,6 @@
 package tests;
-
 import java.io.IOException;
 import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,6 +10,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import base.BaseTest;
 import pages.LoginPage;
+import utilities.AllureUtil;
 import utilities.ExcelUtility;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
@@ -20,16 +19,20 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import utilities.ExtentListener;
+import listeners.ExtentListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Listeners(ExtentListener.class)
 public class LoginTest extends BaseTest {
 
+    private static final Logger logger = LogManager.getLogger(LoginTest.class);
 	@Epic("OrangeHRM")
 	@Feature("Login Module")
 	@Story("Verify Login using Valid and Invalid Credentials")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify Login Functionality using multiple credentials")
+
 	@Test(dataProvider="loginData")
     public void loginCheck(String username, String password, String result) {
 		
@@ -42,13 +45,14 @@ public class LoginTest extends BaseTest {
 
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
 
-        System.out.println("Current URL : " + getDriver().getCurrentUrl());
-        System.out.println("Page Title  : " + getDriver().getTitle());
+         logger.info("Current URL : " + getDriver().getCurrentUrl());
+        logger.info("Page Title  : " + getDriver().getTitle());
 
         if (result.equalsIgnoreCase("SUCCESS")) 
         {
+           //mvn  AllureUtil.attachScreenshot(getDriver());
 
-        	Assert.assertTrue(true);
+            Assert.assertTrue(true);
 
             wait.until(ExpectedConditions.urlContains("dashboard"));
 

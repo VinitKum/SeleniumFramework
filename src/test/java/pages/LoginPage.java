@@ -1,5 +1,4 @@
 package pages;
-
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +26,7 @@ public class LoginPage {
     WebElement loginError;
 
     //    By username = By.name("username");
-    //    By password = By.name("password");
+    //    By password = By.name(" password");
     //    By loginBtn = By.xpath("//button[@type='submit']");
 
     public LoginPage(WebDriver driver) 

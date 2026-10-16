@@ -1,8 +1,6 @@
 package cucumber;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
-
 import com.aventstack.extentreports.ExtentTest;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;

@@ -13,23 +13,25 @@ public class ScreenshotUtil {
 
     public static String capture(WebDriver driver, String testName) throws IOException {
 
-        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File src = ((TakesScreenshot) driver)
+                .getScreenshotAs(OutputType.FILE);
 
         String folder = "test-output/screenshots";
 
         File dir = new File(folder);
 
-        if (!dir.exists())
-        {
+        if (!dir.exists()) {
             dir.mkdirs();
         }
 
-        String path = folder + "/" + testName + ".png";
+        File destination = new File(dir, testName + ".png");
 
-        Files.copy(src.toPath(),
-                   new File(path).toPath(),
-                   StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(
+                src.toPath(),
+                destination.toPath(),
+                StandardCopyOption.REPLACE_EXISTING
+        );
 
-        return path;
+        return destination.getAbsolutePath();
     }
 }

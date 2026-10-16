@@ -11,12 +11,17 @@ import io.qameta.allure.Allure;
 public class AllureUtil {
 
     public static void attachScreenshot(WebDriver driver) {
-    	 System.out.println("========= Allure Screenshot Called =========");
+
+        System.out.println("========= Allure Screenshot Called =========");
+
         byte[] screenshot =
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-        Allure.addAttachment("Failure Screenshot",new ByteArrayInputStream(screenshot));
-
+        Allure.addAttachment(
+                "Failure Screenshot",
+                "image/png",
+                new ByteArrayInputStream(screenshot),
+                ".png"
+        );
     }
-
 }

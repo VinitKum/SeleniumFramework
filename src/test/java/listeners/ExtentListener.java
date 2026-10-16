@@ -1,16 +1,15 @@
-package utilities;
-
+package listeners;
 import java.io.IOException;
-
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import utilities.AllureUtil;
 
 import base.BaseTest;
+import utilities.AllureUtil;
+import utilities.ExtentManager;
+import utilities.ScreenshotUtil;
 
 public class ExtentListener implements ITestListener {
 
@@ -35,28 +34,30 @@ public class ExtentListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-    	 System.out.println("========= onTestFailure =========");
+
+        System.out.println("========= onTestFailure =========");
+
         test.get().fail(result.getThrowable());
 
         BaseTest base = (BaseTest) result.getInstance();
 
-        // Attach Screenshot to Allure
+        // Allure
         AllureUtil.attachScreenshot(base.getDriver());
 
         try {
 
-            String path = ScreenshotUtil.capture(base.getDriver(), result.getName());
+            String path = ScreenshotUtil.capture(
+                    base.getDriver(),
+                    result.getName()
+            );
 
+            // Extent
             test.get().addScreenCaptureFromPath(path);
 
-        }
-
-        catch (IOException e) {
+        } catch (IOException e) {
 
             e.printStackTrace();
-
         }
-
     }
 
     @Override

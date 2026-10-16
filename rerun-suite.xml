@@ -1,0 +1,11 @@
+<suite name="Rerun Demonstration Suite">
+
+    <test name="Rerun Test">
+
+        <classes>
+            <class name="tests.RerunTest"/>
+        </classes>
+
+    </test>
+
+</suite>

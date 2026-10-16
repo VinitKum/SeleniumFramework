@@ -7,7 +7,7 @@
        thread-count="2">
 
     <listeners>
-        <listener class-name="utilities.ExtentListener"/>
+        <listener class-name="listeners.ExtentListener"/>
     </listeners>
 
     <test name="Chrome Grid">
